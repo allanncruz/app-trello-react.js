@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Card from './Card'
+import Cards from './Cards'
 
 class Panel extends Component{
     constructor(props){
@@ -15,10 +15,7 @@ class Panel extends Component{
                         <h2>MY PANEL</h2>
                     </div>
                     <div className="panel-body">
-                        <ul>
-                            <Card/>
-                            <Card/>
-                        </ul>
+                        <Cards/>
                     </div>
                     <div className="panel-footer">
                         <button className="btn btn-primary">
