@@ -1,0 +1,22 @@
+body{
+  background: #e0e8ed;
+}
+
+#navbar-center{
+  &.navbar-default{
+    background: linear-gradient(to right, #0279bc, #026aa7);
+    border-color: linear-gradient(to right, #0279bc, #026aa7);
+  }
+  .navbar-header{
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+    .navbar-brand{
+      color: #fff;
+    }
+  }
+}
+
+#main{
+  margin-top: 3.6em;
+}
