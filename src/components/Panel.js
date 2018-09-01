@@ -20,6 +20,9 @@ class Panel extends Component{
     }
 
     render() {
+
+        const { cards } = this.props
+
         return (
             <div className="col-md-3">
                 <div className="panel panel-default">
@@ -27,7 +30,9 @@ class Panel extends Component{
                         <h2>MY PANEL</h2>
                     </div>
                     <div className="panel-body">
-                        <Cards/>
+                        <Cards
+                            cards={ cards }
+                        />
                     </div>
                     <div className="panel-footer">
                         <button className="btn btn-primary" onClick={this.handleCreateCard}>
