@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Card from './Card'
+import InputEditable from './InputEditable'
 
 class Cards extends Component {
     constructor(props){
@@ -9,8 +10,13 @@ class Cards extends Component {
     render() {
         const cards = this.props.cards.map(card => (
             <Card
-                key={ card.id }
-            />
+                key={ card.id }>
+                <InputEditable
+                    id={ card.edit }
+                    edit={ card.edit }
+                    text={ card.text }
+                />
+            </Card>
         ))
 
         return(

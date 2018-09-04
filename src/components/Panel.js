@@ -53,7 +53,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createCard: () => dispatch(CardActions.createCard())
+        createCard: () => dispatch(CardActions.createCard('New Task'))
     }
 }
 
