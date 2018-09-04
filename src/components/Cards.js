@@ -3,7 +3,7 @@ import Card from './Card'
 import InputEditable from './InputEditable'
 
 class Cards extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
     }
 
@@ -12,14 +12,16 @@ class Cards extends Component {
             <Card
                 key={ card.id }>
                 <InputEditable
-                    id={ card.edit }
+                    id={card.id }
                     edit={ card.edit }
                     text={ card.text }
+                    clickToEdit= { this.props.clickToEdit }
+                    editCard = { this.props.editCard }
+                    deleteCard = { this.props.deleteCard }
                 />
             </Card>
         ))
-
-        return(
+        return (
             <ul>
                 { cards }
             </ul>

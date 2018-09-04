@@ -4,5 +4,5 @@ import Card from './Card'
 
 export default combineReducers({
     router: routerReducer,
-    cards: Card
+    cards : Card
 })

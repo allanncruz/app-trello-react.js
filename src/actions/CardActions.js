@@ -12,6 +12,22 @@ const createCard = (value) => {
     }
 }
 
+const editCard = (edited) => {
+    return {
+        type: ActionTypes.EDIT_CARD,
+        payload: edited
+    }
+}
+
+const deleteCard = (id) => {
+    return {
+        type: ActionTypes.DELETE_CARD,
+        payload: { id }
+    }
+}
+
 export default {
-    createCard
+    createCard,
+    editCard,
+    deleteCard
 }

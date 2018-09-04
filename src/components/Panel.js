@@ -4,25 +4,23 @@ import Cards from './Cards'
 import { connect } from 'react-redux'
 import CardActions from './../actions/CardActions'
 
-class Panel extends Component{
+class Panel extends Component {
     static propTypes = {
         createCard: PropTypes.func.isRequired
     }
 
-
-    constructor(props){
+    constructor(props) {
         super(props)
 
         this.handleCreateCard = this.handleCreateCard.bind(this)
     }
+
     handleCreateCard() {
         this.props.createCard()
     }
 
     render() {
-
         const { cards } = this.props
-
         return (
             <div className="col-md-3">
                 <div className="panel panel-default">
@@ -32,6 +30,9 @@ class Panel extends Component{
                     <div className="panel-body">
                         <Cards
                             cards={ cards }
+                            clickToEdit={ this.props.editCard }
+                            editCard= { this.props.editCard }
+                            deleteCard = { this.props.deleteCard }
                         />
                     </div>
                     <div className="panel-footer">
@@ -46,14 +47,27 @@ class Panel extends Component{
 }
 
 const mapStateToProps = (state) => {
-    return{
+    return {
         cards: state.cards
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createCard: () => dispatch(CardActions.createCard('New Task'))
+        createCard: () => dispatch(CardActions.createCard('New Task')),
+        editCard  : (id, value) => {
+            const edited = { id }
+
+            if (!value) {
+                edited.edit = true
+            } else {
+                edited.edit = false
+                edited.text = value
+            }
+
+            dispatch(CardActions.editCard(edited))
+        },
+        deleteCard : (id) => dispatch(CardActions.deleteCard(id))
     }
 }
 

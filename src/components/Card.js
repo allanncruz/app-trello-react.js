@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
 class Card extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
     }
 
     render() {
-        return(
+        return (
             <li className="col-xs-12">
                 { this.props.children }
             </li>
