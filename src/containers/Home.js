@@ -27,7 +27,9 @@ class Home extends Component {
 	                </button>
 	            </div>
 	            <Panels
-	                    panels={ panels } />
+	                    panels={ panels }
+                        editPanel = { this.props.editPanel }
+                />
             </div>
         )
     }
@@ -41,7 +43,19 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-        createPanel: () => dispatch(PanelActions.createPanel('New Panel'))
+        createPanel: () => dispatch(PanelActions.createPanel('New Panel')),
+        editPanel: (id, value) => {
+            const edited = { id }
+
+            if(!value) {
+                edited.edit = true
+            } else {
+                edited.edit = false
+                edited.text = value
+            }
+
+            dispatch(PanelActions.editPanel(edited))
+        }
 	}
 }
 

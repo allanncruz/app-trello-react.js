@@ -10,6 +10,8 @@ class Panels extends Component {
         const panels = this.props.panels.map(panel => (
             <Panel
                 key={ panel.id }
+                panel={ panel }
+                editPanel={ this.props.editPanel }
             />
 
         ))
