@@ -12,6 +12,7 @@ class Panels extends Component {
                 key={ panel.id }
                 panel={ panel }
                 editPanel={ this.props.editPanel }
+                deletePanel={ this.props.deletePanel }
             />
 
         ))

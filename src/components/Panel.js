@@ -33,6 +33,7 @@ class Panel extends Component {
                             text={ panel.text }
                             editComponent={ this.props.editPanel }
                             clickToEdit={ this.props.editPanel }
+                            deleteComponent = { this.props.deletePanel }
                         />
                     </div>
                     <div className="panel-body">

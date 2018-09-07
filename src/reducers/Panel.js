@@ -15,6 +15,11 @@ export default function panels(state = [], action) {
                 return panel
             })
         break;
+        case ActionTypes.DELETE_PANEL:
+            const { id } = action.payload
+
+            return state.filter(panel => id !== panel.id)
+        break;
         default:
             return state
     }
