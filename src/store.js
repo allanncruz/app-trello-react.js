@@ -6,9 +6,10 @@ import  reducers from './reducers'
 const history = createHistory()
 const middlewares = routerMiddleware(history)
 
-const configStore = () => {
+const configStore = (initalstate) => {
     return createStore(
         reducers,
+        initalstate,
         applyMiddleware(middlewares)
     )
 }
