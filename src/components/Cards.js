@@ -10,7 +10,8 @@ class Cards extends Component {
     render() {
         const cards = this.props.cards.map(card => (
             <Card
-                key={ card.id }>
+                key={ card.id }
+                moveCard={ this.props.moveCard }>
                 <InputEditable
                     id={card.id }
                     edit={ card.edit }

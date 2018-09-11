@@ -33,9 +33,17 @@ const move = (id, monitorId) => {
     }
 }
 
+const moveCard = (id, monitorId) => {
+    return {
+        type: ActionTypes.MOVE_CARD,
+        payload: {id, monitorId }
+    }
+}
+
 export default {
     createPanel,
     editPanel,
     deletePanel,
-    move
+    move,
+    moveCard
 }
