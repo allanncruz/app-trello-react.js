@@ -13,6 +13,7 @@ class Panels extends Component {
                 panel={ panel }
                 editPanel={ this.props.editPanel }
                 deletePanel={ this.props.deletePanel }
+                movePanel={ this.props.movePanel }
             />
 
         ))

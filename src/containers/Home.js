@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { DragDropContext } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 import Panels from './../components/Panels'
 import PanelActions from './../actions/PanelActions'
 
@@ -30,6 +32,7 @@ class Home extends Component {
 	                    panels={ panels }
                         editPanel = { this.props.editPanel }
                         deletePanel={ this.props.deletePanel }
+                        movePanel={ this.props.movePanel }
                 />
             </div>
         )
@@ -58,8 +61,11 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(PanelActions.editPanel(edited))
         },
 
-        deletePanel: (id) => dispatch(PanelActions.deletePanel(id))
+        deletePanel: (id) => dispatch(PanelActions.deletePanel(id)),
+        movePanel: (id, monitorId) => dispatch(PanelActions.move(id, monitorId))
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default DragDropContext(HTML5Backend)(
+    connect(mapStateToProps, mapDispatchToProps)(Home)
+)

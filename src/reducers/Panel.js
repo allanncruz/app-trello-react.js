@@ -1,4 +1,5 @@
 import * as ActionTypes from './../constants/ActionTypes'
+import update from 'react-addons-update'
 
 export default function panels(state = [], action) {
     switch(action.type) {
@@ -19,6 +20,20 @@ export default function panels(state = [], action) {
             const { id } = action.payload
 
             return state.filter(panel => id !== panel.id)
+        break;
+        case ActionTypes.MOVE_PANEL:
+            const targetDropId = action.payload.id
+            const monitorId    = action.payload.monitorId
+
+            const targetIndex = state.findIndex(panel => panel.id === targetDropId)
+            const monitorIndex = state.findIndex(panel => panel.id === monitorId)
+
+            return update(state, {
+                $splice: [
+                    [monitorIndex, 1],
+                    [targetIndex, 0, state.find(panel => panel.id === monitorId)]
+                ]
+            })
         break;
         default:
             return state

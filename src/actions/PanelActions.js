@@ -26,9 +26,16 @@ const deletePanel = (id) => {
         payload: { id }
     }
 }
+const move = (id, monitorId) => {
+    return {
+        type: ActionTypes.MOVE_PANEL,
+        payload: {id, monitorId }
+    }
+}
 
 export default {
     createPanel,
     editPanel,
-    deletePanel
+    deletePanel,
+    move
 }
