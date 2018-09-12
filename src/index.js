@@ -5,7 +5,6 @@ import { Route } from 'react-router'
 import { ConnectedRouter } from 'react-router-redux'
 import Localforage from 'localforage'
 
-
 import Home from './containers/Home'
 
 import cfg from './store'
@@ -20,14 +19,14 @@ const db = Localforage.createInstance({
 
 db
     .getItem('kanban')
-    .then(value => value)
-    .then(value =>  cfg.configStore(value))
+    .then(value => value || undefined)
+    .then(value => cfg.configStore(value))
     .then((store) => {
         ReactDOM.render(
             <div>
                 <header id="header">
                     <nav id="navbar-center" className="navbar navbar-default navbar-fixed-top">
-                        <div className="container-fluid" >
+                        <div className="container-fluid">
                             <div className="navbar-header">
                                 <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
                                     <span className="icon-bar"></span>
@@ -35,12 +34,11 @@ db
                                     <span className="icon-bar"></span>
                                 </button>
                                 <a href="" className="navbar-brand">
-                                    Trello React.js
+                                    <img src="/images/tilst.png" className="img-responsive" alt=""/>
                                 </a>
                             </div>
                             <div className="navbar-collapse collapse" id="navbar">
                                 <ul className="nav navbar-nav">
-
                                 </ul>
                             </div>
                         </div>
@@ -59,4 +57,3 @@ db
 
         store.subscribe(() => db.setItem('kanban', store.getState()))
     })
-

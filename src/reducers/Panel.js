@@ -102,6 +102,22 @@ export default function panels(state = [], action) {
 
                 return panel
             })
+        break;
+        case ActionTypes.REMOVE_FROM_PANEL:
+            const panelIdRemove = action.payload.panelId
+            const cardIdRemove  = action.payload.cardId
+
+            return state.map((panel) => {
+                const { cards } = panel
+                if (panelIdRemove !== panel.id) {
+                    return panel
+                }
+                return Object.assign({}, panel, {
+                    cards: cards.filter( id => cardIdRemove !== id)
+                })
+            })
+
+        break;
         default:
             return state
     }

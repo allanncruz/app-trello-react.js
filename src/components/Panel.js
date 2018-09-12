@@ -20,11 +20,17 @@ class Panel extends Component {
         super(props)
 
         this.handleCreateCard = this.handleCreateCard.bind(this)
+        this.handleDeleteCard = this.handleDeleteCard.bind(this)
     }
 
     handleCreateCard() {
         const { id } = this.props.panel
         this.props.createCard(id)
+    }
+
+    handleDeleteCard(cardId) {
+        const panelId = this.props.panel.id
+        this.props.deleteCard(panelId, cardId)
     }
 
     render() {
@@ -53,7 +59,7 @@ class Panel extends Component {
                                     cards={ filteredCards }
                                     clickToEdit={ this.props.editCard }
                                     editCard={ this.props.editCard }
-                                    deleteCard={ this.props.deleteCard }
+                                    deleteCard={ this.handleDeleteCard }
                                     moveCard={ this.props.moveCard }
                                 />
                             </div>
@@ -96,7 +102,15 @@ const mapDispatchToProps = (dispatch) => {
 
             dispatch(CardActions.editCard(edited))
         },
-        deleteCard : (id) => dispatch(CardActions.deleteCard(id)),
+        deleteCard : (panelId, cardId) => {
+            dispatch(CardActions.deleteCard(cardId))
+
+            if (!panelId) {
+                return
+            }
+
+            return dispatch(PanelActions.removeFromPanel(panelId, cardId))
+        },
         moveCard: (id, monitorId) => dispatch(PanelActions.moveCard(id, monitorId)),
         insertInPanel: (id, monitorId) => dispatch(PanelActions.insertInPanel(id, monitorId))
     }

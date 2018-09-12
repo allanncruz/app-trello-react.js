@@ -47,11 +47,19 @@ const insertInPanel = (panelId, cardId) => {
     }
 }
 
+const removeFromPanel = (panelId, cardId) => {
+    return {
+        type: ActionTypes.REMOVE_FROM_PANEL,
+        payload: { panelId, cardId }
+    }
+}
+
 export default {
     createPanel,
     editPanel,
     deletePanel,
     move,
     moveCard,
-    insertInPanel
+    insertInPanel,
+    removeFromPanel
 }
