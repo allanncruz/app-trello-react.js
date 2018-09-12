@@ -36,61 +36,72 @@ export default function panels(state = [], action) {
             })
         break;
         case ActionTypes.MOVE_CARD:
-                const targetCardDropId = action.payload.id
-                const monitorCardId    = action.payload.monitorId
+            const targetCardDropId = action.payload.id
+            const monitorCardId = action.payload.monitorId
 
-                let targetPanel      = state.filter(panel => panel.cards.indexOf(targetCardDropId))
-                let monitorPanel     = state.filter(panel => panel.cards.indexOf(monitorCardId))
-                targetPanel          = targetPanel[0]
-                monitorPanel         = targetPanel[0]
+            let targetPanel = state.filter(panel => panel.cards.indexOf(targetCardDropId) !== -1)[0]
+            let monitorPanel = state.filter(panel => panel.cards.indexOf(monitorCardId) !== -1)[0]
 
-                const targetCardIndex  = targetPanel.cards.indexOf(targetCardDropId)
-                const monitorCardIndex = monitorPanel.card.indexOf(monitorCardId)
+            const targetCardIndex = targetPanel.cards.indexOf(targetCardDropId)
+            const monitorCardIndex = monitorPanel.cards.indexOf(monitorCardId)
 
             if (targetPanel.id === monitorPanel.id) {
-                return state.map((panel) => {
+                return state.map(panel => {
                     const panelId = panel.id
-
-                    if(monitorPanel.id !== panelId) {
-                        return panel
+                    if (panelId === monitorPanel.id) {
+                        return Object.assign({}, panel, {
+                            cards: update(monitorPanel.cards, {
+                                $splice: [[monitorCardIndex, 1], [targetCardIndex, 0, monitorCardId]],
+                            })
+                        })
                     }
 
-                    return Object.assign({}, panel, {
-                        cards: update(monitorPanel.cards, {
-                            $splice: [
-                                [monitorCardIndex, 1],
-                                [targetCardIndex, 0, monitorId]
-                            ]
-                        })
-                    })
+                    return panel
                 })
             }
 
-            return state.map((panel) => {
+            return state.map(panel => {
                 const panelId = panel.id
-
-                if (targetPanel.id === panelId) {
+                if (panel.id === targetPanel.id) {
                     return Object.assign({}, panel, {
                         cards: update(panel.cards, {
-                            $splice: [
-                                [targetCardIndex, 0, monitorId]
-                            ]
+                            $splice: [[targetCardIndex, 0, monitorCardId]],
                         })
                     })
                 }
 
-                if (monitorPanel.id === panelId) {
+                if (panelId === monitorPanel.id) {
                     return Object.assign({}, panel, {
                         cards: update(panel.cards, {
-                            $splice: [
-                                [monitorCardIndex, 1]
-                            ]
+                            $splice: [[monitorCardIndex, 1]],
                         })
                     })
                 }
-            })
 
+                return panel
+            });
             break;
+        case ActionTypes.INSERT_IN_PANEL:
+            const panelIdInsert = action.payload.panelId
+            const cardIdInsert = action.payload.cardId
+
+            return state.map((panel) => {
+                const { cards } = panel
+                if (!panel.cards.indexOf(cardIdInsert)) {
+                    return Object.assign({}, panel, {
+                        cards: cards.filter((cardId) => {
+                            return cardId !== cardIdInsert
+                        })
+                    })
+                }
+                if (panel.id == panelIdInsert) {
+                    return Object.assign({}, panel, {
+                        cards: cards.concat(cardIdInsert)
+                    })
+                }
+
+                return panel
+            })
         default:
             return state
     }

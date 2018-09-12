@@ -23,11 +23,16 @@ class Panel extends Component {
     }
 
     handleCreateCard() {
-        this.props.createCard()
+        const { id } = this.props.panel
+        this.props.createCard(id)
     }
 
     render() {
         const { cards, panel, connectDragPreview, connectDropTarget, connectDragSource } = this.props
+        const filteredCards = panel.cards
+                                .map(id => cards
+                                             .find(card => card.id === id ))
+                                .filter(card => card)
         return connectDragPreview (
             connectDropTarget(
                 <div className="col-md-3">
@@ -45,7 +50,7 @@ class Panel extends Component {
                             </div>
                             <div className="panel-body">
                                 <Cards
-                                    cards={ cards }
+                                    cards={ filteredCards }
                                     clickToEdit={ this.props.editCard }
                                     editCard={ this.props.editCard }
                                     deleteCard={ this.props.deleteCard }
@@ -73,7 +78,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createCard: () => dispatch(CardActions.createCard('New Task')),
+        createCard: (panelId) => {
+            const createNewCard = CardActions.createCard('New Task')
+            dispatch(createNewCard)
+            const { id } = createNewCard.payload
+            dispatch(PanelActions.insertInPanel(panelId, id))
+        },
         editCard  : (id, value) => {
             const edited = { id }
 
@@ -87,7 +97,8 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(CardActions.editCard(edited))
         },
         deleteCard : (id) => dispatch(CardActions.deleteCard(id)),
-        moveCard: (id, monitorId) => dispatch(PanelActions.moveCard(id, monitorId))
+        moveCard: (id, monitorId) => dispatch(PanelActions.moveCard(id, monitorId)),
+        insertInPanel: (id, monitorId) => dispatch(PanelActions.insertInPanel(id, monitorId))
     }
 }
 
@@ -110,19 +121,23 @@ const collectTarget = (connect, monitor) => ({
 
 const panelHoverTarget = {
     hover(props, monitor) {
-        const { id } = props.panel
+        const { id, cards } = props.panel
         const monitorProps = monitor.getItem()
-        const monitorType    = monitor.getItemType()
+        const monitorType  = monitor.getItemType()
         const monitorId = monitorProps.id
 
-        if ( id !== monitorId ) {
+        if (id !== monitorId && Types.PANEL === monitorType) {
             return props.movePanel(id, monitorId)
+        }
+
+        if (!cards.length && Types.CARD === monitorType) {
+            return props.insertInPanel(id, monitorId)
         }
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
     DragSource(Types.PANEL, dragNDropSrc, collect)(
-       DropTarget(Types.PANEL, panelHoverTarget, collectTarget)(Panel)
+        DropTarget([Types.CARD, Types.PANEL], panelHoverTarget, collectTarget)(Panel)
     )
 )

@@ -40,10 +40,18 @@ const moveCard = (id, monitorId) => {
     }
 }
 
+const insertInPanel = (panelId, cardId) => {
+    return {
+        type: ActionTypes.INSERT_IN_PANEL,
+        payload: { panelId, cardId }
+    }
+}
+
 export default {
     createPanel,
     editPanel,
     deletePanel,
     move,
-    moveCard
+    moveCard,
+    insertInPanel
 }
