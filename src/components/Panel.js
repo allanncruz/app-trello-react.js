@@ -21,6 +21,7 @@ class Panel extends Component {
 
         this.handleCreateCard = this.handleCreateCard.bind(this)
         this.handleDeleteCard = this.handleDeleteCard.bind(this)
+        this.handleDeletePanel = this.handleDeletePanel.bind(this)
     }
 
     handleCreateCard() {
@@ -30,7 +31,16 @@ class Panel extends Component {
 
     handleDeleteCard(cardId) {
         const panelId = this.props.panel.id
+
         this.props.deleteCard(panelId, cardId)
+    }
+
+    handleDeletePanel(panelId) {
+        const { cards } = this.props.panel
+
+        this.props.deletePanel(panelId)
+
+        cards.forEach(card => this.props.deleteCard(panelId, card))
     }
 
     render() {
@@ -51,7 +61,7 @@ class Panel extends Component {
                                     text={ panel.text }
                                     editComponent={ this.props.editPanel }
                                     clickToEdit={ this.props.editPanel }
-                                    deleteComponent = { this.props.deletePanel }
+                                    deleteComponent = { this.handleDeletePanel }
                                 />
                             </div>
                             <div className="panel-body">
