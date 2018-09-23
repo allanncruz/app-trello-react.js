@@ -1,5 +1,11 @@
+html{
+  overflow: hidden;
+  height: 100%;
+}
+
 body{
-  background: #e0e8ed;
+  background: url(/images/bg.jpg);
+  background-size: cover !important;
 }
 
 #navbar-center{

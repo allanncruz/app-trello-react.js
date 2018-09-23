@@ -34,7 +34,7 @@ db
                                     <span className="icon-bar"></span>
                                 </button>
                                 <a href="" className="navbar-brand">
-                                    <img src="/images/tilst.png" className="img-responsive" alt=""/>
+                                    Trello React.js
                                 </a>
                             </div>
                             <div className="navbar-collapse collapse" id="navbar">
