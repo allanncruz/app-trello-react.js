@@ -66,6 +66,12 @@ ul, li {
     }
   }
 }
+.panel-default{
+  border: none;
+  box-shadow: 0 8px 9px rgba(0, 0, 0, 0.2);
+  border-radius: 7px;
+  overflow: hidden;
+}
 
 .panel-heading{
   input{
