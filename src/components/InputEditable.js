@@ -55,7 +55,7 @@ class InputEditable extends Component {
                            onClick={ this.handleClickToEdit }
                            readOnly />
                 </div>
-                <button className="btn btn-danger btn-delete col-xs-2" onClick={ this.handleDelete  }>
+                <button className="btn btn-dark btn-delete col-xs-1" onClick={ this.handleDelete  }>
                     <i className="ion-trash-b"></i>
                 </button>
             </div>

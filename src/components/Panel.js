@@ -75,7 +75,7 @@ class Panel extends Component {
                             </div>
                             <div className="panel-footer">
                                 <button className="btn btn-primary" onClick={this.handleCreateCard}>
-                                    <i className="ion-plus-round"></i> Card
+                                    <i className="ion-plus-round"></i> Add another card
                                 </button>
                             </div>
                         </div>

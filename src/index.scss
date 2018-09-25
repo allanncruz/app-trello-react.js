@@ -10,8 +10,8 @@ body{
 
 #navbar-center{
   &.navbar-default{
-    background: linear-gradient(to right, #0279bc, #026aa7);
-    border-color: linear-gradient(to right, #0279bc, #026aa7);
+    background: rgba(0, 0, 0, 0.4);
+    border: 0;
   }
   .navbar-header{
     left: 50%;

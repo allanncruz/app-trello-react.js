@@ -18,10 +18,72 @@ ul, li {
   }
 }
 
-.btn-delete {
-  padding: 6px 10px;
+.panel-heading, .panel-body{
+  position: relative;
+  .btn-delete {
+    padding: 0 3px;
+    border-radius: 5px;
+    position: absolute;
+    right: 10px;
+    background: #fff;
+  }
+}
+
+.panel-body{
+  padding: 6px;
+}
+
+#main{
+  .col-md-3{
+    &:nth-child(1){
+      .panel-heading{
+        background: #f8f9fa;
+        input{
+          color: #6c757d;
+        }
+      }
+    }
+  }
+  .col-md-3{
+    &:nth-child(2){
+      .panel-heading{
+        background: #6c757d;
+      }
+    }
+  }
+  .col-md-3{
+    &:nth-child(3){
+      .panel-heading{
+        background: #17a2b8;
+      }
+    }
+  }
+  .col-md-3{
+    &:nth-child(4){
+      .panel-heading{
+        background: #61bd4f;
+      }
+    }
+  }
+}
+
+.panel-heading{
+  input{
+    text-transform: uppercase;
+    font-weight: 600;
+    background: none !important;
+    color: #fff;
+  }
+}
+
+.panel-footer{
+  .btn{
+    width: 100%;
+  }
 }
 
 .action-create {
   margin: 1em 0 2em 0;
+  border-radius: 50px;
+  font-size: 2rem;
 }

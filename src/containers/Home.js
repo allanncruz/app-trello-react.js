@@ -25,7 +25,7 @@ class Home extends Component {
             <div>
             	<div className="col-xs-12">
 	                <button className="btn btn-primary action-create" onClick={ this.handleCreatePanel }>
-	                    <i className="ion-plus-round" ></i> New Panel
+	                    <i className="ion-plus-round" ></i>
 	                </button>
 	            </div>
 	            <Panels
