@@ -44,7 +44,7 @@ db
                         </div>
                     </nav>
                 </header>
-                <main id="main" className="container-fluid">
+                <main id="main" className="container">
                     <Provider store={ store }>
                         <ConnectedRouter history = { cfg.history } >
                             <Route exact path="/" component={ Home } />

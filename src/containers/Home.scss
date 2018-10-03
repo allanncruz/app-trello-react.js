@@ -29,8 +29,9 @@ ul, li {
   }
 }
 
-.panel-body{
-  padding: 6px;
+textarea {
+  resize: none;
+  overflow: hidden;
 }
 
 #main{
@@ -38,7 +39,7 @@ ul, li {
     &:nth-child(1){
       .panel-heading{
         background: #f8f9fa;
-        input{
+        textarea{
           color: #6c757d;
         }
       }
@@ -74,11 +75,20 @@ ul, li {
 }
 
 .panel-heading{
-  input{
+  textarea{
     text-transform: uppercase;
     font-weight: 600;
     background: none !important;
     color: #fff;
+    height: 33px;
+  }
+}
+
+.panel-body{
+  padding: 6px;
+  textarea{
+    margin: 2px 0;
+    height: 120px;
   }
 }
 

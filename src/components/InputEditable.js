@@ -1,5 +1,4 @@
 import React , { Component } from 'react'
-
 class InputEditable extends Component {
     constructor(props) {
         super(props)
@@ -36,7 +35,7 @@ class InputEditable extends Component {
     renderEditable() {
         return (
             <div>
-                <input type="text"
+                <textarea type="text"
                        className="form-control"
                        defaultValue={ this.props.text }
                        onBlur={ this.handleEdit }
@@ -49,7 +48,7 @@ class InputEditable extends Component {
         return (
             <div className="row">
                 <div className="col-xs-10 no-padding">
-                    <input type="text"
+                    <textarea type="text"
                            className="form-control"
                            defaultValue={ this.props.text }
                            onClick={ this.handleClickToEdit }
